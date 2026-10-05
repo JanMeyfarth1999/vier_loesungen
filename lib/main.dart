@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'widgets/counter_quadrant.dart';  
+import 'widgets/counter_quadrant.dart';
 
 void main() {
   runApp(const MyApp());
@@ -61,55 +61,28 @@ class _MyHomePageState extends State<MyHomePage> {
             child: Row(
               children: [
                 Expanded(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text('Counter 1'),
-                      Text('$_counter1'),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          IconButton(
-                            onPressed: () {
-                              _changeCounter(4, -1);
-                            },
-                            icon: Icon(Icons.remove),
-                          ),
-                          IconButton(
-                            onPressed: () {
-                              _changeCounter(4, 1);
-                            },
-                            icon: Icon(Icons.add),
-                          ),
-                        ],
-                      ),
-                    ],
+                  child: CounterQuadrant(
+                    title: 'Counter 1',
+                    counter: _counter1,
+                    onDecrement: () {
+                      _changeCounter(4, -1);
+                    },
+                    onIncrement: () {
+                      _changeCounter(4, 1);
+                    },
                   ),
                 ),
+
                 Expanded(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text('Counter 2'),
-                      Text('$_counter2'),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          IconButton(
-                            onPressed: () {
-                              _changeCounter(3, -1);
-                            },
-                            icon: Icon(Icons.remove),
-                          ),
-                          IconButton(
-                            onPressed: () {
-                              _changeCounter(3, 1);
-                            },
-                            icon: Icon(Icons.add),
-                          ),
-                        ],
-                      ),
-                    ],
+                  child: CounterQuadrant(
+                    title: 'Counter 2',
+                    counter: _counter2,
+                    onDecrement: () {
+                      _changeCounter(3, -1);
+                    },
+                    onIncrement: () {
+                      _changeCounter(3, 1);
+                    },
                   ),
                 ),
               ],
@@ -119,55 +92,27 @@ class _MyHomePageState extends State<MyHomePage> {
             child: Row(
               children: [
                 Expanded(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text('Counter 3'),
-                      Text('$_counter3'),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          IconButton(
-                            onPressed: () {
-                              _changeCounter(2, -1);
-                            },
-                            icon: Icon(Icons.remove),
-                          ),
-                          IconButton(
-                            onPressed: () {
-                              _changeCounter(2, 1);
-                            },
-                            icon: Icon(Icons.add),
-                          ),
-                        ],
-                      ),
-                    ],
+                  child: CounterQuadrant(
+                    title: 'Counter 3',
+                    counter: _counter3,
+                    onDecrement: () {
+                      _changeCounter(2, -1);
+                    },
+                    onIncrement: () {
+                      _changeCounter(2, 1);
+                    },
                   ),
                 ),
                 Expanded(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text('Counter 4'),
-                      Text('$_counter4'),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          IconButton(
-                            onPressed: () {
-                              _changeCounter(1, -1);
-                            },
-                            icon: Icon(Icons.remove),
-                          ),
-                          IconButton(
-                            onPressed: () {
-                              _changeCounter(1, 1);
-                            },
-                            icon: Icon(Icons.add),
-                          ),
-                        ],
-                      ),
-                    ],
+                  child: CounterQuadrant(
+                    title: 'Counter 4',
+                    counter: _counter4,
+                    onDecrement: () {
+                      _changeCounter(1, -1);
+                    },
+                    onIncrement: () {
+                      _changeCounter(1, 1);
+                    },
                   ),
                 ),
               ],

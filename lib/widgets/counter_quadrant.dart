@@ -7,7 +7,8 @@ final int counter;
 final VoidCallback onDecrement;
 final VoidCallback onIncrement;
 
-CounterQuadrant({
+const CounterQuadrant({
+  super.key,
   required this.title,
   required this.counter,
   required this.onDecrement,
