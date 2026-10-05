@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'widgets/counter_quadrant.dart';
+import 'widgets/counter_row.dart';
 
 void main() {
   runApp(const MyApp());
@@ -58,36 +59,27 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Column(
         children: [
           Expanded(
-            child: Row(
-              children: [
-                Expanded(
-                  child: CounterQuadrant(
-                    title: 'Counter 1',
-                    counter: _counter1,
-                    onDecrement: () {
-                      _changeCounter(4, -1);
-                    },
-                    onIncrement: () {
-                      _changeCounter(4, 1);
-                    },
-                  ),
-                ),
+            child: CounterRow(
+              title1: 'Counter 1',
+              counter1: _counter1,
+              onDecrement1: () {
+                _changeCounter(4, -1);
+              },
+              onIncrement1: () {
+                _changeCounter(4, 1);
+              },
 
-                Expanded(
-                  child: CounterQuadrant(
-                    title: 'Counter 2',
-                    counter: _counter2,
-                    onDecrement: () {
-                      _changeCounter(3, -1);
-                    },
-                    onIncrement: () {
-                      _changeCounter(3, 1);
-                    },
-                  ),
-                ),
-              ],
+              title2: 'Counter 2',
+              counter2: _counter2,
+              onDecrement2: () {
+                _changeCounter(3, -1);
+              },
+              onIncrement2: () {
+                _changeCounter(3, 1);
+              },
             ),
           ),
+
           Expanded(
             child: Row(
               children: [
