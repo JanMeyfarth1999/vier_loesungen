@@ -41,44 +41,24 @@ class MyHomePage extends ConsumerWidget {
           Expanded(
             child: CounterRow(
               title1: 'Counter 1',
-              counter1: counterState.counter1,
-              onDecrement1: () {
-                ref.read(counterProvider.notifier).changeCounter(4, -1);
-              },
-              onIncrement1: () {
-                ref.read(counterProvider.notifier).changeCounter(4, 1);
-              },
+              counterNumber1: 1,
+              targetCounterNumber1: 4,
 
               title2: 'Counter 2',
-              counter2: counterState.counter2,
-              onDecrement2: () {
-                ref.read(counterProvider.notifier).changeCounter(3, -1);
-              },
-              onIncrement2: () {
-                ref.read(counterProvider.notifier).changeCounter(3, 1);
-              },
+              counterNumber2: 2,
+              targetCounterNumber2: 3,
             ),
           ),
 
           Expanded(
             child: CounterRow(
               title1: 'Counter 3',
-              counter1: counterState.counter3,
-              onDecrement1: () {
-                ref.read(counterProvider.notifier).changeCounter(2, -1);
-              },
-              onIncrement1: () {
-                ref.read(counterProvider.notifier).changeCounter(2, 1);
-              },
+              counterNumber1: 3,
+              targetCounterNumber1: 2,
 
               title2: 'Counter 4',
-              counter2: counterState.counter4,
-              onDecrement2: () {
-                ref.read(counterProvider.notifier).changeCounter(1, -1);
-              },
-              onIncrement2: () {
-                ref.read(counterProvider.notifier).changeCounter(1, 1);
-              },
+              counterNumber2: 4,
+              targetCounterNumber2: 1,
             ),
           ),
         ],

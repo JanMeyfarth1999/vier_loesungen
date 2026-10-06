@@ -1,41 +1,60 @@
-import 'package:flutter/material.dart'; 
+import 'package:counter/state/counter_notifier.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class CounterQuadrant extends StatelessWidget {
+class CounterQuadrant extends ConsumerWidget {
+  final String title;
+  final int counterNumber;
+  final int targetCounterNumber;
 
-final String title;
-final int counter;
-final VoidCallback onDecrement;
-final VoidCallback onIncrement;
+  const CounterQuadrant({
+    super.key,
+    required this.title,
+    required this.counterNumber,
+    required this.targetCounterNumber,
+  });
 
-const CounterQuadrant({
-  super.key,
-  required this.title,
-  required this.counter,
-  required this.onDecrement,
-  required this.onIncrement,
-});
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final counterState = ref.watch(counterProvider);
 
-@override 
-Widget build(BuildContext context) {
-  return Column(
-    children: [
-      Text(title),
-      Text('$counter'),
-      Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          IconButton(onPressed: onDecrement,
-          icon: Icon(Icons.remove),
-          ),
+    int currentCounter;
+    if (counterNumber == 1) {
+      currentCounter = counterState.counter1;
+    } else if (counterNumber == 2) {
+      currentCounter = counterState.counter2;
+    } else if (counterNumber == 3) {
+      currentCounter = counterState.counter3;
+    } else {
+      currentCounter = counterState.counter4;
+    }
 
-          IconButton(onPressed: onIncrement,
-          icon: Icon(Icons.add),
-          ),
-
-        ],
-      ),
-    ],
-  );
+    return Column(
+      children: [
+        Text(title),
+        Text('$currentCounter'),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            IconButton(
+              onPressed: () {
+                ref
+                    .read(counterProvider.notifier)
+                    .changeCounter(targetCounterNumber, -1);
+              },
+              icon: Icon(Icons.remove),
+            ),
+            IconButton(
+              onPressed: () {
+                ref
+                    .read(counterProvider.notifier)
+                    .changeCounter(targetCounterNumber, 1);
+              },
+              icon: Icon(Icons.add),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
 }
-}
-
