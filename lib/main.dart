@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'widgets/counter_row.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'state/counter_notifier.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -18,63 +20,42 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MyHomePage extends StatefulWidget {
+class MyHomePage extends ConsumerWidget {
   const MyHomePage({super.key, required this.title});
 
   final String title;
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter1 = 0;
-  int _counter2 = 0;
-  int _counter3 = 0;
-  int _counter4 = 0;
-
-  void _changeCounter(int counterNumber, int change) {
-    setState(() {
-      if (counterNumber == 1) {
-        _counter1 = _counter1 + change;
-      } else if (counterNumber == 2) {
-        _counter2 = _counter2 + change;
-      } else if (counterNumber == 3) {
-        _counter3 = _counter3 + change;
-      } else if (counterNumber == 4) {
-        _counter4 = _counter4 + change;
-      }
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final counterState = ref.watch(counterProvider);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
 
-        title: Text('${_counter1 + _counter2 + _counter3 + _counter4}'),
+        title: Text(
+          '${counterState.counter1 + counterState.counter2 + counterState.counter3 + counterState.counter4}',
+        ),
       ),
       body: Column(
         children: [
           Expanded(
             child: CounterRow(
               title1: 'Counter 1',
-              counter1: _counter1,
+              counter1: counterState.counter1,
               onDecrement1: () {
-                _changeCounter(4, -1);
+                ref.read(counterProvider.notifier).changeCounter(4, -1);
               },
               onIncrement1: () {
-                _changeCounter(4, 1);
+                ref.read(counterProvider.notifier).changeCounter(4, 1);
               },
 
               title2: 'Counter 2',
-              counter2: _counter2,
+              counter2: counterState.counter2,
               onDecrement2: () {
-                _changeCounter(3, -1);
+                ref.read(counterProvider.notifier).changeCounter(3, -1);
               },
               onIncrement2: () {
-                _changeCounter(3, 1);
+                ref.read(counterProvider.notifier).changeCounter(3, 1);
               },
             ),
           ),
@@ -82,21 +63,21 @@ class _MyHomePageState extends State<MyHomePage> {
           Expanded(
             child: CounterRow(
               title1: 'Counter 3',
-              counter1: _counter3,
+              counter1: counterState.counter3,
               onDecrement1: () {
-                _changeCounter(2, -1);
+                ref.read(counterProvider.notifier).changeCounter(2, -1);
               },
               onIncrement1: () {
-                _changeCounter(2, 1);
+                ref.read(counterProvider.notifier).changeCounter(2, 1);
               },
 
               title2: 'Counter 4',
-              counter2: _counter4,
+              counter2: counterState.counter4,
               onDecrement2: () {
-                _changeCounter(1, -1);
+                ref.read(counterProvider.notifier).changeCounter(1, -1);
               },
               onIncrement2: () {
-                _changeCounter(1, 1);
+                ref.read(counterProvider.notifier).changeCounter(1, 1);
               },
             ),
           ),
